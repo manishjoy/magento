@@ -12,7 +12,7 @@ class Excellence_Test_Block_Test extends Mage_Core_Block_Template
             $this->setData('test', Mage::registry('test'));
         }
         return $this->getData('test');
-
+        
     }
     
     public function showTable($module){
