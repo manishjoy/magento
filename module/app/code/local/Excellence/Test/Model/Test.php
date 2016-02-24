@@ -17,9 +17,10 @@ class Excellence_Test_Model_Test extends Mage_Core_Model_Abstract
     	return $this->getCollection();
     }
     public function fetchBeforeEdit($id){
-    	$data =array('title'=>$this->load($id)->getTitle(),
-                    'content'=>$this->load($id)->getContent(),
-                    'status'=>$this->load($id)->getStatus());
+        $model = $this->load($id);
+    	$data =array('title'=>$model->getTitle(),
+                    'content'=>$model->getContent(),
+                    'status'=>$model->getStatus());
 
     	return $data;
     }

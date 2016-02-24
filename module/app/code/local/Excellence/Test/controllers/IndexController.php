@@ -26,18 +26,19 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
     {
     	$this->loadLayout();
         $module_name = Mage::app()->getRequest()->getParam("module_name");
-        $post = Mage::app()->getRequest()->getParams();
+        $post = Mage::app()->getRequest()->getPost('row');
         if(isset($post['sub']) && !empty($post['title']) && !empty($post['content'])){
             if(Mage::getModel('test/'.$module_name)->saveRow($post)){
                 $this->_redirect('test/index/index');
                 Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Inserted'));
+                //$this->_redirect('test/index/index');
             }
             else{
-                Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
+                    Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
             }
         }
         else{
-            Mage::getSingleton('core/session')->addNotice(Mage::helper('test')->__('Please Fill All The Fields Correctly'));
+                Mage::getSingleton('core/session')->addNotice(Mage::helper('test')->__('Please Fill All The Fields Correctly'));
         }
 
         $this->renderLayout();
@@ -56,12 +57,11 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
     	Mage::register('status', $status['status']);    
 
         //save data
-        $post = Mage::app()->getRequest()->getParams();
-        if(isset($post['sub']) && !empty($post['title']) && !empty($post['content'])){
-            if(Mage::getModel('test/'.$module_name)->saveEdit($post, $id)){
+        $row = Mage::app()->getRequest()->getPost('row');
+        if(isset($row['sub']) && !empty($row['title']) && !empty($row['content'])){
+            if(Mage::getModel('test/'.$module_name)->saveEdit($row, $id)){
                 $this->_redirect('test/index/index');
                 Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Edited'));
-                //$this->_redirect('test/index/index');
             }
             else{
                 Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));

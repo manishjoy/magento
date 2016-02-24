@@ -15,13 +15,13 @@ else{
     <h4><?php echo $this->__('Edit Row'); ?></h4>
     <label>Id:</label><?php echo " ".Mage:: registry('id'); ?><br>
     <form id="myform" action="" method="POST">
-        <label>Title:</label><br><input type="text" name="title" id= "title" placeholder="Title" value=<?php echo Mage:: registry('title'); ?> /><br/>
-        <label>Content:</label><br><textarea type="text" name="content" id= "content" placeholder="Content" ><?php echo Mage:: registry('content'); ?></textarea><br/>
+        <label>Title:</label><br><input type="text" name="row[title]" id= "title" placeholder="Title" value=<?php echo Mage:: registry('title'); ?> /><br/>
+        <label>Content:</label><br><textarea type="text" name="row[content]" id= "content" placeholder="Content" ><?php echo Mage:: registry('content'); ?></textarea><br/>
         <label>Status:</label><br>
-        <select name="status" id= "status">
+        <select name="row[status]" id= "status">
             <option value="1" <?php echo $op1_select; ?> >Enabled</option>
             <option value="2" <?php echo $op2_select; ?> >Disabled</option>
         </select><br/><br>
-        <input type="submit" name="sub" id="sub" value="Submit" />
+        <input type="submit" name="row[sub]" id="sub" value="Submit" />
     </form>
 </div>
