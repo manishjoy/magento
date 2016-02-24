@@ -33,51 +33,51 @@
     </frontend>
     <admin>
         <routers>
-			<test>
-				<use>admin</use>
-				<args>
-					<module>Excellence_Test</module>
-					<frontName>test</frontName>
-				</args>
-			</test>
+            <test>
+                    <use>admin</use>
+                    <args>
+                            <module>Excellence_Test</module>
+                            <frontName>test</frontName>
+                    </args>
+            </test>
         </routers>
     </admin>
     <adminhtml>
-		<menu>
-			<test module="test">
-				<title>Test</title>
-				<sort_order>71</sort_order>               
-				<children>
-					<items module="test">
-						<title>Manage Items</title>
-						<sort_order>0</sort_order>
-						<action>test/adminhtml_test</action>
-					</items>
-				</children>
-			</test>
-		</menu>
-		<acl>
-			<resources>
-				<all>
-					<title>Allow Everything</title>
-				</all>
-				<admin>
-					<children>
-						<Excellence_Test>
-							<title>Test Module</title>
-							<sort_order>10</sort_order>
-						</Excellence_Test>
-					</children>
-				</admin>
-			</resources>
-		</acl>
-		<layout>
-			<updates>
-				<test>
-					<file>test.xml</file>
-				</test>
-			</updates>
-		</layout>
+        <menu>
+            <test module="test">
+                <title>Test</title>
+                <sort_order>71</sort_order>               
+                <children>
+                    <items module="test">
+                        <title>Manage Items</title>
+                        <sort_order>0</sort_order>
+                        <action>test/adminhtml_test</action>
+                    </items>
+                </children>
+            </test>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Excellence_Test>
+                            <title>Test Module</title>
+                            <sort_order>10</sort_order>
+                        </Excellence_Test>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <test>
+                    <file>test.xml</file>
+                </test>
+            </updates>
+        </layout>
     </adminhtml>   
     <global>
         <models>
