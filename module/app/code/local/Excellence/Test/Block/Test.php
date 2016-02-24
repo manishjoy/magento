@@ -6,13 +6,13 @@ class Excellence_Test_Block_Test extends Mage_Core_Block_Template
 		return parent::_prepareLayout();
     }
     
-     public function getTest()     
-     { 
+    public function getTest()     
+    { 
         if (!$this->hasData('test')) {
             $this->setData('test', Mage::registry('test'));
         }
         return $this->getData('test');
-        
+
     }
     
     public function showTable($module){

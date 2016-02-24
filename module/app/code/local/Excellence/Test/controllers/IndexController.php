@@ -31,7 +31,6 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
 			if(Mage::getModel('test/'.$module_name)->saveRow($post)){
 				$this->_redirect('test/index/index');
 				Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Inserted'));
-				//$this->_redirect('test/index/index');
 			}
 			else{
 				Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
