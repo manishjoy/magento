@@ -8,6 +8,8 @@
        <th>Title</th>
        <th>Content</th>
        <th>Status</th>
+       <th>Edit</th>
+       <th>Delete</th>
    </tr>
 <?php foreach ($model as $item) { ?>
        <tr>
@@ -15,7 +17,8 @@
            <td> <?php echo $item->getData('title'); ?></td>
            <td> <?php echo $item->getData('content'); ?></td>
            <td><?php echo $item->getData('status'); ?></td>
-
+           <td><a href="<?php echo $this->getEditUrl('test',$item->getData('test_id')) ?>" class="f-left"><?php echo $this->__('Edit') ?></a></td>
+           <td><a href="<?php echo $this->getDeleteUrl('test',$item->getData('test_id')) ?>" class="f-left"><?php echo $this->__('Delete') ?></a></td>
        </tr>
 
 <?php } ?>

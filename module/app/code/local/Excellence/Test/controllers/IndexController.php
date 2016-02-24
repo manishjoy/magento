@@ -9,6 +9,7 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
 
     public function deleteAction()
     {
+    	$this->loadLayout();
 		$id = Mage::app()->getRequest()->getParam("id");
 		$module_name = Mage::app()->getRequest()->getParam("module_name");
 		if(Mage::getModel('test/'.$module_name)->deleteRow($id)){
@@ -17,19 +18,20 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
 		}
 		else{
 			Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
-		}
-		$this->loadLayout();     
+		}     
 		$this->renderLayout();
     }
 
     public function addAction()
     {
+    	$this->loadLayout();
 		$module_name = Mage::app()->getRequest()->getParam("module_name");
 		$post = Mage::app()->getRequest()->getParams();
 		if(isset($post['sub']) && !empty($post['title']) && !empty($post['content'])){
 			if(Mage::getModel('test/'.$module_name)->saveRow($post)){
-				Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Inserted'));
 				$this->_redirect('test/index/index');
+				Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Inserted'));
+				//$this->_redirect('test/index/index');
 			}
 			else{
 				Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
@@ -38,7 +40,37 @@ class Excellence_Test_IndexController extends Mage_Core_Controller_Front_Action
 		else{
 			Mage::getSingleton('core/session')->addNotice(Mage::helper('test')->__('Please Fill All The Fields Correctly'));
 		}
-    	$this->loadLayout();     
+    	     
+		$this->renderLayout();
+    }
+    public function editAction()
+    {
+    	$this->loadLayout();
+		$id = Mage::app()->getRequest()->getParam("id");
+		$module_name = Mage::app()->getRequest()->getParam("module_name"); 
+    	
+		//fetch & show data
+    	Mage::register('id', $id);
+    	$status = Mage::getModel('test/'.$module_name)->fetchBeforeEdit($id);
+    	Mage::register('title', $status['title']); 
+    	Mage::register('content', $status['content']); 
+    	Mage::register('status', $status['status']);    
+
+		//save data
+		$post = Mage::app()->getRequest()->getParams();
+		if(isset($post['sub']) && !empty($post['title']) && !empty($post['content'])){
+			if(Mage::getModel('test/'.$module_name)->saveEdit($post, $id)){
+				$this->_redirect('test/index/index');
+				Mage::getSingleton('core/session')->addSuccess(Mage::helper('test')->__('Row Edited'));
+				//$this->_redirect('test/index/index');
+			}
+			else{
+				Mage::getSingleton('core/session')->addError(Mage::helper('test')->__('Some Error Occured.... Please try again...'));
+			}
+		}
+		else{
+			Mage::getSingleton('core/session')->addNotice(Mage::helper('test')->__('Please Fill All The Fields Correctly'));
+		}
 		$this->renderLayout();
     }
 }
